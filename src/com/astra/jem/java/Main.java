@@ -34,14 +34,30 @@ public class Main {
 
 
         // Sort stack
-        Stack<Integer> st = new Stack<>("SortMe");
+//        Stack<Integer> st = new Stack<>("SortMe");
+//
+//        st.push(3);
+//        st.push(1);
+//        st.push(2);
+//        st.print();
+//        Stack newSt = sortStack(st);
+//        newSt.print();
 
-        st.push(3);
-        st.push(1);
-        st.push(2);
-        st.print();
-        Stack newSt = sortStack(st);
-        newSt.print();
+        // MyQueue
+        MyQueue que = new MyQueue();
+        que.peek();
+        que.add(1);
+
+        que.add(2);
+        que.peek();
+        que.add(3);
+        que.remove();
+        que.remove();
+        que.add(4);
+        que.remove();
+        que.remove();
+        que.remove();
+        que.peek();
 
     }
 
