@@ -44,21 +44,25 @@ public class Main {
 //        newSt.print();
 
         // MyQueue
-        MyQueue que = new MyQueue();
-        que.peek();
-        que.add(1);
+//        MyQueue que = new MyQueue();
+//        que.peek();
+//        que.add(1);
+//
+//        que.add(2);
+//        que.peek();
+//        que.add(3);
+//        que.remove();
+//        que.remove();
+//        que.add(4);
+//        que.remove();
+//        que.remove();
+//        que.remove();
+//        que.peek();
 
-        que.add(2);
-        que.peek();
-        que.add(3);
-        que.remove();
-        que.remove();
-        que.add(4);
-        que.remove();
-        que.remove();
-        que.remove();
-        que.peek();
-
+        // Tree
+        int[] ar = {10, 20, 25};
+        BTNode nd = BinaryTree.fromArray(ar, 0, ar.length-1);
+        BinaryTree.printSearchTree(nd);
     }
 
     public static Stack sortStack(Stack<Integer> s) {

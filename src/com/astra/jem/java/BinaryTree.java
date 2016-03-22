@@ -71,7 +71,7 @@ public class BinaryTree {
         else return b;
     }
 
-    void printSearchTree(BTNode node) {
+    static void printSearchTree(BTNode node) {
         if (node == null) return;
         printSearchTree(node.left);
         System.out.print(node.data + " ");
@@ -145,14 +145,39 @@ public class BinaryTree {
         return ( Math.abs( max - min ) <= 1);
     }
 
-    BTNode fromArray(int[] arr, int start, int end) {
+    /*
+    Given a sorted (increasing order) array,
+    write an algorithm to create a binary tree with minimal height.
+     */
+    static BTNode fromArray(int[] arr, int start, int end) {
         if ((end < start) || (arr.length == 0)) return null;
+//        int[] subarr = new int[end-start+1];
+//        for (int i = 0; i < subarr.length; i++) {
+//            subarr[i] = arr[start + i];
+//        }
         int mid = (end - start) / 2;
         BTNode node = new BTNode(arr[mid]);
-        int[] arrL = Arrays.copyOfRange(arr, start, mid);
-        node.left = fromArray(arrL, start, mid);
-        int[] arrR = Arrays.copyOfRange(arr, mid+1, end);
-        node.right = fromArray(arrR, mid+1, end);
+        int leftLen = 0;
+        if (end - start > 0) leftLen = mid-1-start+1;
+        if (leftLen > 0) {
+            int[] arrL = new int[leftLen];
+            for (int i=0; i < arrL.length; i++) {
+                arrL[i] = arr[start + i];
+            }
+            node.left = fromArray(arrL, start, mid-1);
+        }
+
+        int rLen = 0;
+        if (end - start > 0) rLen = (end - (mid + 1)) + 1;
+        if (rLen > 0) {
+            int[] arrR = new int[rLen];
+            for (int i=0; i < arrR.length; i++) {
+                arrR[i] = arr[mid+1+i];
+            }
+
+            node.right = fromArray(arrR, mid+1, end);
+        }
+
         return node;
     }
 
