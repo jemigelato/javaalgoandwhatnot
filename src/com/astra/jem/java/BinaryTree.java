@@ -33,7 +33,7 @@ public class BinaryTree {
         return ct;
     }
 
-    int maxDepth(BTNode node) {
+    static int maxDepth(BTNode node) {
         int dep = 0;
         if (node == null) return dep;
         int depL = maxDepth(node.left);
@@ -158,24 +158,24 @@ public class BinaryTree {
         int mid = (end - start) / 2;
         BTNode node = new BTNode(arr[mid]);
         int leftLen = 0;
-        if (end - start > 0) leftLen = mid-1-start+1;
+        if (end - start > 0) leftLen = mid;
         if (leftLen > 0) {
             int[] arrL = new int[leftLen];
             for (int i=0; i < arrL.length; i++) {
-                arrL[i] = arr[start + i];
+                arrL[i] = arr[i];
             }
-            node.left = fromArray(arrL, start, mid-1);
+            node.left = fromArray(arrL, 0, mid-1);
         }
 
         int rLen = 0;
-        if (end - start > 0) rLen = (end - (mid + 1)) + 1;
+        if (end - start > 0) rLen =arr.length - mid - 1;
         if (rLen > 0) {
             int[] arrR = new int[rLen];
             for (int i=0; i < arrR.length; i++) {
                 arrR[i] = arr[mid+1+i];
             }
 
-            node.right = fromArray(arrR, mid+1, end);
+            node.right = fromArray(arrR, mid+1, arr.length);
         }
 
         return node;

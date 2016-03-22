@@ -60,9 +60,11 @@ public class Main {
 //        que.peek();
 
         // Tree
-        int[] ar = {10, 20, 25};
+//        int[] ar = {10, 20, 25};
+        int[] ar = {5,10, 15, 20, 25, 30, 35};
         BTNode nd = BinaryTree.fromArray(ar, 0, ar.length-1);
         BinaryTree.printSearchTree(nd);
+        System.out.println("\nMax depth: " + BinaryTree.maxDepth(nd));
     }
 
     public static Stack sortStack(Stack<Integer> s) {
