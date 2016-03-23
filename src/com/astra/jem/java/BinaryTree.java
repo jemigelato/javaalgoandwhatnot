@@ -181,4 +181,35 @@ public class BinaryTree {
         return node;
     }
 
+    static void createLinkedLists(BTNode node) {
+        System.out.println("Printing BFS...");
+        LinkedList<BTNode> list = new LinkedList<>();
+        list.add(node);
+//        while(true){
+            for (int i = 0; i < list.size(); i++) {
+                BTNode nx = list.get(i);
+                if (nx != null) {
+                    System.out.println(nx.data);
+                    list.add(nx.left);
+                    list.add(nx.right);
+                }
+            }
+
+//        }
+    }
+
+    static void printBFS(BTNode node) {
+        System.out.println("Printing BFS using a while loop...");
+        Queue<BTNode> list = new LinkedList<>();
+        list.offer(node);
+        while (!list.isEmpty()) {
+            BTNode nx = list.poll();
+            if (nx != null) {
+                System.out.println(nx.data);
+                list.offer(nx.left);
+                list.offer(nx.right);
+            }
+        }
+    }
+
 }

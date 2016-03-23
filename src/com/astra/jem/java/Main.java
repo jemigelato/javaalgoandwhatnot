@@ -65,6 +65,9 @@ public class Main {
         BTNode nd = BinaryTree.fromArray(ar, 0, ar.length-1);
         BinaryTree.printSearchTree(nd);
         System.out.println("\nMax depth: " + BinaryTree.maxDepth(nd));
+
+//        BinaryTree.createLinkedLists(nd);
+        BinaryTree.printBFS(nd);
     }
 
     public static Stack sortStack(Stack<Integer> s) {
