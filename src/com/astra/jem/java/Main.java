@@ -1,5 +1,10 @@
 package com.astra.jem.java;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -66,7 +71,10 @@ public class Main {
         BinaryTree.printSearchTree(nd);
         System.out.println("\nMax depth: " + BinaryTree.maxDepth(nd));
 
-//        BinaryTree.createLinkedLists(nd);
+        ArrayList<LinkedList<BTNode>> arlist = BinaryTree.createLinkedLists(nd);
+        for (LinkedList<BTNode> list: arlist) {
+            System.out.println(list.toString());
+        }
         BinaryTree.printBFS(nd);
     }
 

@@ -181,21 +181,28 @@ public class BinaryTree {
         return node;
     }
 
-    static void createLinkedLists(BTNode node) {
-        System.out.println("Printing BFS...");
+    static ArrayList<LinkedList<BTNode>> createLinkedLists(BTNode node) {
+        System.out.println("Creating array of depth-based linked lists...");
+        int level = 0;
+        ArrayList<LinkedList<BTNode>> result = new ArrayList<>();
         LinkedList<BTNode> list = new LinkedList<>();
         list.add(node);
-//        while(true){
-            for (int i = 0; i < list.size(); i++) {
-                BTNode nx = list.get(i);
+        result.add(level, list);
+        while(true){
+            list = new LinkedList<>();
+            for (int i = 0; i < result.get(level).size(); i++) {
+                BTNode nx = result.get(level).get(i);
                 if (nx != null) {
-                    System.out.println(nx.data);
-                    list.add(nx.left);
-                    list.add(nx.right);
+//                    System.out.println(nx.data);
+                    if (nx.left != null) list.add(nx.left);
+                    if (nx.right != null) list.add(nx.right);
                 }
             }
-
-//        }
+            if (list.size() > 0) result.add(level + 1, list);
+            else break;
+            level++;
+        }
+        return result;
     }
 
     static void printBFS(BTNode node) {
