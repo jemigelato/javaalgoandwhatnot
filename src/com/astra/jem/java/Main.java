@@ -76,6 +76,16 @@ public class Main {
             System.out.println(list.toString());
         }
         BinaryTree.printBFS(nd);
+
+        int i = 25;
+        BTNode aNode = BinaryTree.getNode(nd, i);
+        System.out.println("Node info for node " + i + ": "
+                + aNode.toString() + ", "
+                + (aNode.left != null ? aNode.left.toString() : "NULL") + ", "
+                + (aNode.right != null ? aNode.right.toString() : "NULL")  );
+
+        BTNode next = BinaryTree.inorderSuccessor(aNode);
+        System.out.println("Next node: " + next.toString());
     }
 
     public static Stack sortStack(Stack<Integer> s) {

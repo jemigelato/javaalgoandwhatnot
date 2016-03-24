@@ -71,6 +71,7 @@ public class BinaryTree {
         else return b;
     }
 
+    // Inorder traversal
     static void printSearchTree(BTNode node) {
         if (node == null) return;
         printSearchTree(node.left);
@@ -213,6 +214,50 @@ public class BinaryTree {
                 list.offer(nx.right);
             }
         }
+    }
+
+    public static BTNode inorderSuccessor(BTNode node) {
+        if (node == null) return null;
+        System.out.println("inorder successor of node " + node.data);
+        BTNode nx = null;
+        if (node.parent == null || node.right != null) {
+            nx = leftMostChild(node.right);
+        } else {
+            nx = node.parent;
+            if (node == nx.left) { // we found it
+            }
+            else {
+                // node = parent.right i.e. node is right child
+                inorderSuccessor(nx);
+            }
+        }
+        return nx;
+
+    }
+
+    public static BTNode leftMostChild(BTNode node) {
+        if (node == null) return null;
+        while (node != null) {
+            node = node.left;
+        }
+        return node;
+    }
+
+    public static BTNode getNode(BTNode head, int d) {
+        Queue<BTNode> list = new LinkedList<>();
+        BTNode target = head;
+        list.offer(head);
+        while (!list.isEmpty()) {
+            BTNode nx = list.poll();
+            if (nx != null) {
+//                System.out.println(nx.data);
+                if (nx.data == d) target = nx;
+                list.offer(nx.left);
+                list.offer(nx.right);
+            }
+        }
+        return target;
+
     }
 
 }

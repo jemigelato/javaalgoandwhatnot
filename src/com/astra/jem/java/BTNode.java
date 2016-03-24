@@ -6,12 +6,14 @@ package com.astra.jem.java;
 public class BTNode {
     BTNode left;
     BTNode right;
+    BTNode parent;
     int data;
 
     public BTNode(int d) {
         this.data = d;
         left = null;
         right = null;
+        parent = null;
     }
 
     @Override
