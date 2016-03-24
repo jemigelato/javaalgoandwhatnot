@@ -77,15 +77,25 @@ public class Main {
         }
         BinaryTree.printBFS(nd);
 
-        int i = 25;
+        BinaryTree.getNode(nd, 25).parent = BinaryTree.getNode(nd, 30);
+        BinaryTree.getNode(nd, 35).parent = BinaryTree.getNode(nd, 30);
+        BinaryTree.getNode(nd, 5).parent = BinaryTree.getNode(nd, 10);
+        BinaryTree.getNode(nd, 15).parent = BinaryTree.getNode(nd, 10);
+        BinaryTree.getNode(nd, 10).parent = BinaryTree.getNode(nd, 20);
+        BinaryTree.getNode(nd, 30).parent = BinaryTree.getNode(nd, 20);
+        int i = 35;
         BTNode aNode = BinaryTree.getNode(nd, i);
         System.out.println("Node info for node " + i + ": "
-                + aNode.toString() + ", "
+                + (aNode.parent != null ? aNode.parent.toString() : "NULL") + ", "
                 + (aNode.left != null ? aNode.left.toString() : "NULL") + ", "
                 + (aNode.right != null ? aNode.right.toString() : "NULL")  );
 
         BTNode next = BinaryTree.inorderSuccessor(aNode);
-        System.out.println("Next node: " + next.toString());
+        System.out.println("Next node: "
+                + (next != null ? next.toString() : next));
+
+        System.out.println("Postorder traversal...");
+        BinaryTree.printPostOrder(nd);
     }
 
     public static Stack sortStack(Stack<Integer> s) {

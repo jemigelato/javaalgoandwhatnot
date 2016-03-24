@@ -79,7 +79,8 @@ public class BinaryTree {
         printSearchTree(node.right);
     }
 
-    void printPostOrder(BTNode node) {
+    static void printPostOrder(BTNode node) {
+
         if (node == null) return;
         printPostOrder(node.left);
         printPostOrder(node.right);
@@ -154,6 +155,7 @@ public class BinaryTree {
         if ((end < start) || (arr.length == 0)) return null;
         int mid = (end - start) / 2;
         BTNode node = new BTNode(arr[mid]);
+
         int leftLen = 0;
         if (end - start > 0) leftLen = mid;
         if (leftLen > 0) {
@@ -216,28 +218,40 @@ public class BinaryTree {
         }
     }
 
+    /*
+    Write an algorithm to find the ‘next’ node
+    (e.g., in-order successor) of a given node
+    in a binary search tree where each node
+    has a link to its parent.
+     */
     public static BTNode inorderSuccessor(BTNode node) {
         if (node == null) return null;
-        System.out.println("inorder successor of node " + node.data);
-        BTNode nx = null;
+        System.out.println("Getting the inorder successor of node " + node.data);
+        BTNode nx = node.parent;
         if (node.parent == null || node.right != null) {
             nx = leftMostChild(node.right);
         } else {
             nx = node.parent;
-            if (node == nx.left) { // we found it
+            if (node == nx.left) { // parent is the successor
             }
             else {
                 // node = parent.right i.e. node is right child
-                inorderSuccessor(nx);
+                nx=node.parent;
+                while (nx != null) {
+                    if (nx.left == node) {
+                        break;
+                    }
+                    node = nx;
+                    nx=node.parent;
+                }
             }
         }
         return nx;
-
     }
 
     public static BTNode leftMostChild(BTNode node) {
         if (node == null) return null;
-        while (node != null) {
+        while (node.left != null) {
             node = node.left;
         }
         return node;
