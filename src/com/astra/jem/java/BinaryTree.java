@@ -151,10 +151,6 @@ public class BinaryTree {
      */
     static BTNode fromArray(int[] arr, int start, int end) {
         if ((end < start) || (arr.length == 0)) return null;
-//        int[] subarr = new int[end-start+1];
-//        for (int i = 0; i < subarr.length; i++) {
-//            subarr[i] = arr[start + i];
-//        }
         int mid = (end - start) / 2;
         BTNode node = new BTNode(arr[mid]);
         int leftLen = 0;
