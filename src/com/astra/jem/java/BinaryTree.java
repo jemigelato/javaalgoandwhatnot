@@ -306,6 +306,10 @@ public class BinaryTree {
             if (currNde.right != null) stack.push(currNde.right);
             if (currNde.left != null) stack.push(currNde.left);
         }
+        if (stack.isEmpty()) {
+            System.out.println("Node is not valid.");
+            return;
+        }
         System.out.println("  parent candidates: " + parents);
 
         int lastChild  = key;

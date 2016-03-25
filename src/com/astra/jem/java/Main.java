@@ -97,7 +97,7 @@ public class Main {
         System.out.println("Preorder traversal...");
         BinaryTree.printPreorder(nd);
 
-        BinaryTree.printAncestors(nd, 25);
+        BinaryTree.printAncestors(nd, 5);
     }
 
     public static Stack sortStack(Stack<Integer> s) {
