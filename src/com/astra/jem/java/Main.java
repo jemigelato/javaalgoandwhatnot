@@ -98,6 +98,10 @@ public class Main {
         BinaryTree.printPreorder(nd);
 
         BinaryTree.printAncestors(nd, 5);
+
+        // Equilibrium
+        int[] arr = {-7, 1, 5, 2, -4, 3, 0};
+        System.out.println(equi(arr, arr.length));
     }
 
     public static Stack sortStack(Stack<Integer> s) {
@@ -136,6 +140,23 @@ public class Main {
         }
 
         return prev;
+    }
+
+    static int equi(int A[], int n) {
+        int index = -1;
+        int sum=0;
+        for (int i = 0; i < n; i++) {
+            sum = sum + A[i];
+        }
+        System.out.println("sum: " + sum);
+
+        int sumL = 0;
+        for (int i = 0; i < n; i++) {
+            int sumR = sum - sumL - A[i];
+            if (sumR == sumL) index = i;
+            sumL = sumL + A[i];
+        }
+        return index;
     }
 
 }
