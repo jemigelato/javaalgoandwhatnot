@@ -94,8 +94,8 @@ public class Main {
         System.out.println("Next node: "
                 + (next != null ? next.toString() : next));
 
-        System.out.println("Postorder traversal...");
-        BinaryTree.printPostOrder(nd);
+        System.out.println("Preorder traversal...");
+        BinaryTree.printPreorder(nd);
 
         // TODO : Print ancestors of a given node in binary tree?
     }

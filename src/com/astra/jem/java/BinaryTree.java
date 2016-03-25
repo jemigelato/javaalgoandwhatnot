@@ -2,6 +2,7 @@ package com.astra.jem.java;
 
 import java.util.*;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Created by Jem on 2016/03/18.
@@ -96,13 +97,25 @@ public class BinaryTree {
         breadthFirstSearch(q);
     }
 
-    void depthFirstSearch(java.util.Stack<BTNode> stack) {
+    // Preorder traversal -- recursive
+    static void depthFirstSearch(java.util.Stack<BTNode> stack) {
         if (stack == null || stack.isEmpty()) return;
         BTNode node = stack.pop();
         System.out.print(node.data + " ");
         if (node.right != null) stack.push(node.right);
         if (node.left != null) stack.push(node.left);
         depthFirstSearch(stack);
+    }
+
+    static void printPreorder(BTNode node) {
+        Stack<BTNode> stack = new Stack<>();
+        stack.push(node);
+        while (!stack.isEmpty()) {
+            BTNode currentNode = stack.pop();
+            System.out.print(" " + currentNode.data);
+            if (currentNode.right != null) stack.push(currentNode.right);
+            if (currentNode.left != null) stack.push(currentNode.left);
+        }
     }
 
     boolean isLeafBalanced(BTNode node) {
