@@ -97,7 +97,7 @@ public class Main {
         System.out.println("Preorder traversal...");
         BinaryTree.printPreorder(nd);
 
-        // TODO : Print ancestors of a given node in binary tree?
+        BinaryTree.printAncestors(nd, 25);
     }
 
     public static Stack sortStack(Stack<Integer> s) {

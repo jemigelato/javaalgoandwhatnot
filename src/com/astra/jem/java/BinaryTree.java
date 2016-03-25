@@ -287,4 +287,40 @@ public class BinaryTree {
 
     }
 
+    static void printAncestors(BTNode root, int key) {
+        System.out.println("\nLooking for ancestors of this node: " + key);
+        // first, do a DFS and store nodes in a stack until we reach target
+        if (root == null || root.data == key) {
+            System.out.println("  ...no ancestors found");
+            return;
+        }
+        Stack<BTNode> stack = new Stack<>();
+        stack.push(root);
+        Stack<BTNode> parents = new Stack<>();
+        while (!stack.isEmpty()) {
+            BTNode currNde = stack.pop();
+            if (currNde.data == key) {
+                break;
+            }
+            parents.push(currNde);
+            if (currNde.right != null) stack.push(currNde.right);
+            if (currNde.left != null) stack.push(currNde.left);
+        }
+        System.out.println("  parent candidates: " + parents);
+
+        int lastChild  = key;
+        while (!parents.isEmpty()) {
+            BTNode lastParent = parents.pop();
+            if (lastParent.left != null && lastParent.left.data == lastChild) {
+                System.out.println(lastParent.data);
+                lastChild = lastParent.data;
+            }
+            else if (lastParent.right != null && lastParent.right.data == lastChild) {
+                System.out.println(lastParent.data);
+                lastChild = lastParent.data;
+            }
+        }
+
+    }
+
 }
