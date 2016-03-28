@@ -7,18 +7,19 @@ import java.math.BigInteger;
  */
 public class Rectangle {
     public int solution (int k, int l, int m, int n, int p, int q, int r, int s){
-        int MAX = 2147483647;
+
 //        long areaA = area(k,m,l,n);
 //        long areaB = area(p,r,q,s);
-        BigInteger areaA = area(k,m,l,n);
-        BigInteger areaB = area(p,r,q,s);
+
         int intx1 = Math.max(k,p);
         int intx2 = Math.min(m,r);
         int inty1 = Math.max(l,q);
         int inty2 = Math.min(n,s);
-        BigInteger areaInt;
+//        BigInteger areaInt;
+        int areaInt;
         if (intx1 > intx2 || inty1 > inty2){
-            areaInt = new BigInteger("0");
+//            areaInt = new BigInteger("0");
+            areaInt = 0;
         } else {
             areaInt = area(intx1, intx2, inty1, inty2);
         }
@@ -44,22 +45,47 @@ public class Rectangle {
 //        }
 
 //        long areaT = areaA + (areaB - areaInt);
-        BigInteger areaT = areaA.add(areaB.subtract(areaInt));
-        BigInteger limit = new BigInteger("2147483647");
-//        if (areaT > 2147483647) return -1;
-//        return (int)areaT;
-        if (areaT.compareTo(limit) == 1) return -1;
-        return areaT.intValue();
+
+//        BigInteger areaA = area(k,m,l,n);
+//        BigInteger areaB = area(p,r,q,s);
+//        BigInteger areaT = areaA.add(areaB.subtract(areaInt));
+//        BigInteger limit = new BigInteger("2147483647");
+//        if (areaT.compareTo(limit) == 1) return -1;
+//        return areaT.intValue();
+
+        if (areaInt == -1) return -1;
+        int areaA = area(k,m,l,n);
+        if (areaA == -1) return -1;
+        int areaB = area(p,r,q,s);
+        if (areaB == -1) return -1;
+        int areaT = areaA + (areaB - areaInt);
+
+        return areaT;
     }
 
-    public BigInteger area(int x1, int x2, int y1, int y2) {
-        BigInteger x = BigInteger.valueOf(x2).subtract(BigInteger.valueOf(x1));
-        BigInteger y = BigInteger.valueOf(y2).subtract(BigInteger.valueOf(y1));
-//        long x= ((long)x2-(long)x1);
-//        long y = ((long)y2-(long)y1);
+    public int area(int x1, int x2, int y1, int y2) {
+//        BigInteger x = BigInteger.valueOf(x2).subtract(BigInteger.valueOf(x1));
+//        BigInteger y = BigInteger.valueOf(y2).subtract(BigInteger.valueOf(y1));
+        long x= ((long)x2-(long)x1);
+        long y = ((long)y2-(long)y1);
 //        BigInteger a = (long)x * (long)y;
 
-        BigInteger a = x.multiply(y);
+//        BigInteger a = x.multiply(y);
+        int a = safeMultiply(x,y);
         return a;
+    }
+
+    static final int safeMultiply(long left, long right) {
+        if (right > 0 ? left > Integer.MAX_VALUE/right
+                || left < Integer.MIN_VALUE/right
+                : (right < -1 ? left > Integer.MIN_VALUE/right
+                || left < Integer.MAX_VALUE/right
+                : right == -1
+                && left == Integer.MIN_VALUE) ) {
+//            throw new ArithmeticException("Integer overflow");
+            return -1;
+        }
+        int mult = (int)(left * right);
+        return mult;
     }
 }
