@@ -102,6 +102,23 @@ public class Main {
         // Equilibrium
         int[] arr = {-7, 1, 5, 2, -4, 3, 0};
         System.out.println(equi(arr, arr.length));
+
+        // Rectangle
+        Rectangle rec = new Rectangle();
+        System.out.println("Area of rectangles: "
+                + rec.solution(-4, 1, 2, 6, 0, -1, 4, 3)); // ans: 42
+        System.out.println("Area of rectangles: "
+                + rec.solution(1, 1, 3, 3, 2, 2, 5, 5)); // ans: 12
+        System.out.println("Area of rectangles: "
+                + rec.solution(-5, -10, -1, -4, -11, -6, -4, -1)); // ans: 57
+        System.out.println("Area of rectangles: "
+                + rec.solution(5, 1, 12, 6, 0, 0, 8, 3)); // ans: 53
+        System.out.println("Area of rectangles: "
+                + rec.solution(0, 0, 3, 4, 5, 0, 10, 4)); // ans: 32
+        System.out.println("Area of rectangles: "
+                + rec.solution(2, 2, 6, 6, -2, -2, 5, -1)); // ans: 23
+        System.out.println("Area of rectangles: "
+                + rec.solution(-2147483648, -2147483648, 2147483647, 2147483647, -2147483648, -2147483648, 2147483647, 2147483647)); // ans: 23
     }
 
     public static Stack sortStack(Stack<Integer> s) {
