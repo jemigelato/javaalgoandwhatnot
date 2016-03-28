@@ -17,7 +17,7 @@ public class Rectangle {
         int inty2 = Math.min(n,s);
 //        BigInteger areaInt;
         int areaInt;
-        if (intx1 > intx2 || inty1 > inty2){
+        if (intx1 >= intx2 || inty1 >= inty2){
 //            areaInt = new BigInteger("0");
             areaInt = 0;
         } else {
@@ -58,7 +58,7 @@ public class Rectangle {
         if (areaA == -1) return -1;
         int areaB = area(p,r,q,s);
         if (areaB == -1) return -1;
-        int areaT = areaA + (areaB - areaInt);
+        int areaT = areaA + areaB - areaInt;
 
         return areaT;
     }
@@ -66,8 +66,8 @@ public class Rectangle {
     public int area(int x1, int x2, int y1, int y2) {
 //        BigInteger x = BigInteger.valueOf(x2).subtract(BigInteger.valueOf(x1));
 //        BigInteger y = BigInteger.valueOf(y2).subtract(BigInteger.valueOf(y1));
-        long x= ((long)x2-(long)x1);
-        long y = ((long)y2-(long)y1);
+        long x= (long)x2-(long)x1;
+        long y = (long)y2-(long)y1;
 //        BigInteger a = (long)x * (long)y;
 
 //        BigInteger a = x.multiply(y);
@@ -85,7 +85,6 @@ public class Rectangle {
 //            throw new ArithmeticException("Integer overflow");
             return -1;
         }
-        int mult = (int)(left * right);
-        return mult;
+        return (int)(left * right);
     }
 }
