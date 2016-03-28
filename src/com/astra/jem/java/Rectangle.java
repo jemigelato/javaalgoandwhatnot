@@ -7,6 +7,7 @@ import java.math.BigInteger;
  */
 public class Rectangle {
     public int solution (int k, int l, int m, int n, int p, int q, int r, int s){
+        int MAX = 2147483647;
 //        long areaA = area(k,m,l,n);
 //        long areaB = area(p,r,q,s);
         BigInteger areaA = area(k,m,l,n);
@@ -52,8 +53,8 @@ public class Rectangle {
     }
 
     public BigInteger area(int x1, int x2, int y1, int y2) {
-        BigInteger x = BigInteger.valueOf(x2 -x1);
-        BigInteger y = BigInteger.valueOf(y2 -y1);
+        BigInteger x = BigInteger.valueOf(x2).subtract(BigInteger.valueOf(x1));
+        BigInteger y = BigInteger.valueOf(y2).subtract(BigInteger.valueOf(y1));
 //        long x= ((long)x2-(long)x1);
 //        long y = ((long)y2-(long)y1);
 //        BigInteger a = (long)x * (long)y;
