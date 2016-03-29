@@ -126,7 +126,7 @@ public class Main {
         System.out.println("Area of rectangles: "
                 + rec.solution(-1, -1, 2147483647, 1, 0, 0, 1, 1)); // ans: -1
         System.out.println("Area of rectangles: "
-                + rec.solution(-2147483648, -2147483648, -2147483648, -2147483647, -1, -1, 0, 0)); // ans: -1
+                + rec.solution(0, 0, 2147483646, 1, 2147483645, 0, 2147483647, 1)); // ans:
     }
 
     public static Stack sortStack(Stack<Integer> s) {
