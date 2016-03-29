@@ -125,8 +125,14 @@ public class Main {
                 + rec.solution(-2147483648, -2147483648, 2147483647, 2147483647, 0, 0, 1, 1)); // ans: -1
         System.out.println("Area of rectangles: "
                 + rec.solution(-1, -1, 2147483647, 1, 0, 0, 1, 1)); // ans: -1
+        int a = 1610612735; // 3/4 of limit
         System.out.println("Area of rectangles: "
-                + rec.solution(0, 0, 2147483646, 1, 2147483645, 0, 2147483647, 1)); // ans:
+                + rec.solution(0, 0, a, 1, a-1, 0, 2147483647, 1)); // ans: 2147483647 -- max allowed
+        int b = 2147483647/4;
+        int max = 2147483647;
+        System.out.println("Area of rectangles: "
+                + rec.solution(0, 0, a, 1, b, 0, max, 1)); // areaA: 1610612735, areaB: 1610612736, areaInt: 1073741824,  ans: 2147483647
+
     }
 
     public static Stack sortStack(Stack<Integer> s) {
