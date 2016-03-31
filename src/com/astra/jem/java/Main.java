@@ -1,9 +1,9 @@
 package com.astra.jem.java;
 
+import test.Task2;
+
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Main {
 
@@ -66,72 +66,83 @@ public class Main {
 
         // Tree
 //        int[] ar = {10, 20, 25};
-        int[] ar = {5,10, 15, 20, 25, 30, 35};
-        BTNode nd = BinaryTree.fromArray(ar, 0, ar.length-1);
-        BinaryTree.printSearchTree(nd);
-        System.out.println("\nMax depth: " + BinaryTree.maxDepth(nd));
+//        int[] ar = {5,10, 15, 20, 25, 30, 35};
+//        BTNode nd = BinaryTree.fromArray(ar, 0, ar.length-1);
+//        BinaryTree.printSearchTree(nd);
+//        System.out.println("\nMax depth: " + BinaryTree.maxDepth(nd));
+//
+//        ArrayList<LinkedList<BTNode>> arlist = BinaryTree.createLinkedLists(nd);
+//        for (LinkedList<BTNode> list: arlist) {
+//            System.out.println(list.toString());
+//        }
+//        BinaryTree.printBFS(nd);
+//
+//        BinaryTree.getNode(nd, 25).parent = BinaryTree.getNode(nd, 30);
+//        BinaryTree.getNode(nd, 35).parent = BinaryTree.getNode(nd, 30);
+//        BinaryTree.getNode(nd, 5).parent = BinaryTree.getNode(nd, 10);
+//        BinaryTree.getNode(nd, 15).parent = BinaryTree.getNode(nd, 10);
+//        BinaryTree.getNode(nd, 10).parent = BinaryTree.getNode(nd, 20);
+//        BinaryTree.getNode(nd, 30).parent = BinaryTree.getNode(nd, 20);
+//        int i = 35;
+//        BTNode aNode = BinaryTree.getNode(nd, i);
+//        System.out.println("Node info for node " + i + ": "
+//                + (aNode.parent != null ? aNode.parent.toString() : "NULL") + ", "
+//                + (aNode.left != null ? aNode.left.toString() : "NULL") + ", "
+//                + (aNode.right != null ? aNode.right.toString() : "NULL")  );
+//
+//        BTNode next = BinaryTree.inorderSuccessor(aNode);
+//        System.out.println("Next node: "
+//                + (next != null ? next.toString() : next));
+//
+//        System.out.println("Preorder traversal...");
+//        BinaryTree.printPreorder(nd);
+//
+//        BinaryTree.printAncestors(nd, 5);
+//
+//        // Equilibrium
+//        int[] arr = {-7, 1, 5, 2, -4, 3, 0};
+//        System.out.println(equi(arr, arr.length));
+//
+//        // Rectangle
+//        Rectangle rec = new Rectangle();
+//        System.out.println("Area of rectangles: "
+//                + rec.solution(-4, 1, 2, 6, 0, -1, 4, 3)); // ans: 42
+//        System.out.println("Area of rectangles: "
+//                + rec.solution(1, 1, 3, 3, 2, 2, 5, 5)); // ans: 12
+//        System.out.println("Area of rectangles: "
+//                + rec.solution(-5, -10, -1, -4, -11, -6, -4, -1)); // ans: 57
+//        System.out.println("Area of rectangles: "
+//                + rec.solution(5, 1, 12, 6, 0, 0, 8, 3)); // ans: 53
+//        System.out.println("Area of rectangles: "
+//                + rec.solution(0, 0, 3, 4, 5, 0, 10, 4)); // ans: 32
+//        System.out.println("Area of rectangles: "
+//                + rec.solution(2, 2, 6, 6, -2, -2, 5, -1)); // ans: 23
+//        System.out.println("Area of rectangles: "
+//                + rec.solution(-2147483648, -2147483648, 2147483647, 2147483647, -2147483648, -2147483648, 2147483647, 2147483647)); // ans: -1
+//        System.out.println("Area of rectangles: "
+//                + rec.solution(0,0,0,0,0,0,0,0)); // ans: 0
+//        System.out.println("Area of rectangles: "
+//                + rec.solution(-2147483648, -2147483648, 2147483647, 2147483647, 0, 0, 1, 1)); // ans: -1
+//        System.out.println("Area of rectangles: "
+//                + rec.solution(-1, -1, 2147483647, 1, 0, 0, 1, 1)); // ans: -1
+//        int a = 1610612735; // 3/4 of limit
+//        System.out.println("Area of rectangles: "
+//                + rec.solution(0, 0, a, 1, a-1, 0, 2147483647, 1)); // ans: 2147483647 -- max allowed
+//        int b = 2147483647/4;
+//        int max = 2147483647;
+//        System.out.println("Area of rectangles: "
+//                + rec.solution(0, 0, a, 1, b, 0, max, 1)); // areaA: 1610612735, areaB: 1610612736, areaInt: 1073741824,  ans: 2147483647
 
-        ArrayList<LinkedList<BTNode>> arlist = BinaryTree.createLinkedLists(nd);
-        for (LinkedList<BTNode> list: arlist) {
-            System.out.println(list.toString());
-        }
-        BinaryTree.printBFS(nd);
-
-        BinaryTree.getNode(nd, 25).parent = BinaryTree.getNode(nd, 30);
-        BinaryTree.getNode(nd, 35).parent = BinaryTree.getNode(nd, 30);
-        BinaryTree.getNode(nd, 5).parent = BinaryTree.getNode(nd, 10);
-        BinaryTree.getNode(nd, 15).parent = BinaryTree.getNode(nd, 10);
-        BinaryTree.getNode(nd, 10).parent = BinaryTree.getNode(nd, 20);
-        BinaryTree.getNode(nd, 30).parent = BinaryTree.getNode(nd, 20);
-        int i = 35;
-        BTNode aNode = BinaryTree.getNode(nd, i);
-        System.out.println("Node info for node " + i + ": "
-                + (aNode.parent != null ? aNode.parent.toString() : "NULL") + ", "
-                + (aNode.left != null ? aNode.left.toString() : "NULL") + ", "
-                + (aNode.right != null ? aNode.right.toString() : "NULL")  );
-
-        BTNode next = BinaryTree.inorderSuccessor(aNode);
-        System.out.println("Next node: "
-                + (next != null ? next.toString() : next));
-
-        System.out.println("Preorder traversal...");
-        BinaryTree.printPreorder(nd);
-
-        BinaryTree.printAncestors(nd, 5);
-
-        // Equilibrium
-        int[] arr = {-7, 1, 5, 2, -4, 3, 0};
-        System.out.println(equi(arr, arr.length));
-
-        // Rectangle
-        Rectangle rec = new Rectangle();
-        System.out.println("Area of rectangles: "
-                + rec.solution(-4, 1, 2, 6, 0, -1, 4, 3)); // ans: 42
-        System.out.println("Area of rectangles: "
-                + rec.solution(1, 1, 3, 3, 2, 2, 5, 5)); // ans: 12
-        System.out.println("Area of rectangles: "
-                + rec.solution(-5, -10, -1, -4, -11, -6, -4, -1)); // ans: 57
-        System.out.println("Area of rectangles: "
-                + rec.solution(5, 1, 12, 6, 0, 0, 8, 3)); // ans: 53
-        System.out.println("Area of rectangles: "
-                + rec.solution(0, 0, 3, 4, 5, 0, 10, 4)); // ans: 32
-        System.out.println("Area of rectangles: "
-                + rec.solution(2, 2, 6, 6, -2, -2, 5, -1)); // ans: 23
-        System.out.println("Area of rectangles: "
-                + rec.solution(-2147483648, -2147483648, 2147483647, 2147483647, -2147483648, -2147483648, 2147483647, 2147483647)); // ans: -1
-        System.out.println("Area of rectangles: "
-                + rec.solution(0,0,0,0,0,0,0,0)); // ans: 0
-        System.out.println("Area of rectangles: "
-                + rec.solution(-2147483648, -2147483648, 2147483647, 2147483647, 0, 0, 1, 1)); // ans: -1
-        System.out.println("Area of rectangles: "
-                + rec.solution(-1, -1, 2147483647, 1, 0, 0, 1, 1)); // ans: -1
-        int a = 1610612735; // 3/4 of limit
-        System.out.println("Area of rectangles: "
-                + rec.solution(0, 0, a, 1, a-1, 0, 2147483647, 1)); // ans: 2147483647 -- max allowed
-        int b = 2147483647/4;
-        int max = 2147483647;
-        System.out.println("Area of rectangles: "
-                + rec.solution(0, 0, a, 1, b, 0, max, 1)); // areaA: 1610612735, areaB: 1610612736, areaInt: 1073741824,  ans: 2147483647
+        Set<Object> setA = new HashSet<>();
+        setA.add("A");
+        setA.add("B");
+        setA.add("C");
+        Set<Object> setB = new HashSet<>();
+        setB.add("D");
+        setB.add("A");
+        setB.add("C");
+        Set<Object> inter = Task2.getIntersection(setA, setB);
+        System.out.println("Set intersection: " + inter.toString());
 
     }
 

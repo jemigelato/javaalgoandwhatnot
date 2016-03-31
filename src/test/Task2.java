@@ -1,5 +1,7 @@
 package test;
 
+import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 
 public class Task2 {
@@ -11,7 +13,23 @@ public class Task2 {
           The method should not chage the content of the parameters.
          */
 
-    	return null;
+        if (a == null && b == null) return null;
+        if (a == null && b != null) return b;
+        if (a != null && b == null) return a;
+        Set<Object> inter = new HashSet<>();
+//        HashSet<Object> hash = new HashSet<>();
+//        for (Object obj: a) {
+//            hash.add(obj);
+//        }
+//        for (Object x: b) {
+//            if (hash.contains(x)) {
+//                inter.add(x);
+//            }
+//        }
+        inter = new HashSet<>(a);
+        inter.retainAll(b);
+
+        return inter;
     }
 
     public static Set<Object> getUniqueElements(Set<Object> a, Set<Object> b) {
