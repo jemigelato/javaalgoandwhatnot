@@ -38,14 +38,17 @@ public class Task3 {
             this.next = null;
         }
 
+        @Override
         public int getItem() {
             return this.data;
         }
 
+        @Override
         public ListNode getNext() {
             return this.next;
         }
 
+        @Override
         public void setNext(ListNode next) {
             this.next = next;
         }
