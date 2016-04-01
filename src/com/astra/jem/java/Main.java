@@ -133,16 +133,45 @@ public class Main {
 //        System.out.println("Area of rectangles: "
 //                + rec.solution(0, 0, a, 1, b, 0, max, 1)); // areaA: 1610612735, areaB: 1610612736, areaInt: 1073741824,  ans: 2147483647
 
+
         Set<Object> setA = new HashSet<>();
+        Set<Object> setB = new HashSet<>();
+        setA.add("D");
+        setB.add("B");
+
+//        System.out.println("set A: " + setA.toString());
+//        System.out.println("set B: " + setB.toString());
+        Set<Object> inter = Task2.getIntersection(setA, setB);
+        System.out.println("getIntersection(): " + inter.toString());
+
+//        System.out.println("set A: " + setA.toString());
+//        System.out.println("set B: " + setB.toString());
+        Set<Object> symDiff = Task2.getUniqueElements(setA, setB);
+        System.out.println("getUniqueElements(): " + symDiff.toString());
+//        System.out.println("set A: " + setA.toString());
+//        System.out.println("set B: " + setB.toString());
+
+
+        setA = new HashSet<>();
         setA.add("A");
         setA.add("B");
         setA.add("C");
-        Set<Object> setB = new HashSet<>();
+        setB = new HashSet<>();
         setB.add("D");
         setB.add("A");
         setB.add("C");
-        Set<Object> inter = Task2.getIntersection(setA, setB);
-        System.out.println("Set intersection: " + inter.toString());
+
+        System.out.println("set A: " + setA.toString());
+        System.out.println("set B: " + setB.toString());
+        inter = Task2.getIntersection(setA, setB);
+        System.out.println("getIntersection(): " + inter.toString());
+
+        System.out.println("set A: " + setA.toString());
+        System.out.println("set B: " + setB.toString());
+        symDiff = Task2.getUniqueElements(setA, setB);
+        System.out.println("getUniqueElements: " + symDiff.toString());
+        System.out.println("set A: " + setA.toString());
+        System.out.println("set B: " + setB.toString());
 
     }
 
