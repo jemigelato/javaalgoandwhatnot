@@ -1,8 +1,8 @@
 package test;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class Task4 {
     // Please do not change this interface
@@ -20,27 +20,41 @@ public class Task4 {
           The method shall work optimally with large trees.
          */
 
-        // Depth-first, inorder traversal
         List<Node> list = new ArrayList<>();
         if (root == null) return list;
 
-//        Stack<Node> stack = new Stack<>();
-        // ignore root
-//        Node n = root.getChildren().get(0); // first child
-//        Node n = root;
+        ArrayDeque<Node>  stack = new ArrayDeque<>();
+        Node node = root;
 
-//        while (!stack.empty() || n != null) {
-//            System.out.println("Getting node: " + n.getValue());
-//            if (n.getChildren() != null && !n.getChildren().isEmpty()) {
-////            if (n != null) {
-//                stack.push(n);
-//                n = n.getChildren().get(0);
-//            } else {
-//                Node nd = stack.pop();
-//                list.add(new TreeNode(nd.getValue()));
-//                n = nd.getChildren().get(1);
-//            }
-//        }
+        while (true) {
+            stack.push(node);
+            if (node.getChildren() != null && node.getChildren().get(0) != null) {
+                node = node.getChildren().get(0);
+            } else {
+                break;
+            }
+        }
+
+        while (stack.size() > 0) {
+            node = stack.pop();
+            list.add(node);
+            if (node.getChildren() != null) {
+                int count = node.getChildren().size();
+                for (int i = count-1; i > 0; i--) {
+                    if (node.getChildren() != null && node.getChildren().get(i) != null) {
+                        Node nodex = node.getChildren().get(i);
+                        while (true) {
+                            stack.push(nodex);
+                            if (nodex.getChildren() != null && nodex.getChildren().get(0) != null) {
+                                nodex = nodex.getChildren().get(0);
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
     	return list;
     }
@@ -71,14 +85,6 @@ public class Task4 {
             this.children = lst;
         }
 
-        public Node getFirstChild() {
-            return this.children.get(0);
-        }
-
-        public boolean hasChildNodes() {
-            if (this.children != null && !this.children.isEmpty()) return true;
-            return false;
-        }
     }
 
     public static void main(String args[]) {
@@ -86,11 +92,43 @@ public class Task4 {
         test.Task4.TreeNode node2 = new test.Task4.TreeNode(2);
         test.Task4.TreeNode node3 = new test.Task4.TreeNode(3);
         test.Task4.TreeNode node4 = new test.Task4.TreeNode(4);
+        test.Task4.TreeNode node5 = new test.Task4.TreeNode(5);
+        test.Task4.TreeNode node6 = new test.Task4.TreeNode(6);
+        test.Task4.TreeNode node7 = new test.Task4.TreeNode(7);
+        test.Task4.TreeNode node8 = new test.Task4.TreeNode(8);
+        test.Task4.TreeNode node9 = new test.Task4.TreeNode(9);
+        test.Task4.TreeNode node10 = new test.Task4.TreeNode(10);
+        test.Task4.TreeNode node45 = new test.Task4.TreeNode(45);
+
         List<Node> lst = new ArrayList<>();
         lst.add(node2);
         lst.add(node3);
         node1.setChildren(lst);
+
+        lst = new ArrayList<>();
+        lst.add(node4);
+        lst.add(node45);
+        lst.add(node5);
+        lst.add(node6);
+        node2.setChildren(lst);
+
+        lst = new ArrayList<>();
+        lst.add(node7);
+        node3.setChildren(lst);
+
+        lst = new ArrayList<>();
+        lst.add(node8);
+        node4.setChildren(lst);
+
+        lst = new ArrayList<>();
+        lst.add(node9);
+        lst.add(node10);
+        node6.setChildren(lst);
+
         List<Node> traverseLst = traverseTreeInDepth(node1);
-        System.out.println(traverseLst.toString());
+        System.out.println("Printing list...");
+        for (Node nd : traverseLst) {
+            System.out.print(nd.getValue() + ", ");
+        }
     }
 }
