@@ -133,7 +133,7 @@ public class Main {
 //        System.out.println("Area of rectangles: "
 //                + rec.solution(0, 0, a, 1, b, 0, max, 1)); // areaA: 1610612735, areaB: 1610612736, areaInt: 1073741824,  ans: 2147483647
 
-
+        // Task2
         Set<Object> setA = new HashSet<>();
         Set<Object> setB = new HashSet<>();
         setA.add("D");
@@ -172,6 +172,7 @@ public class Main {
         System.out.println("getUniqueElements: " + symDiff.toString());
         System.out.println("set A: " + setA.toString());
         System.out.println("set B: " + setB.toString());
+
 
     }
 
