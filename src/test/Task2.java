@@ -44,4 +44,44 @@ public class Task2 {
         diff.removeAll(inter);
     	return diff;
     }
+
+    public static void main(String args[]) {
+        Set<Object> setA = new HashSet<>();
+        Set<Object> setB = new HashSet<>();
+        setA.add("D");
+        setA.add("B");
+        setB.add("B");
+
+        System.out.println("set A: " + setA.toString());
+        System.out.println("set B: " + setB.toString());
+        Set<Object> inter = Task2.getIntersection(setA, setB);
+        System.out.println("getIntersection(): " + inter.toString());
+
+        Set<Object> symDiff = Task2.getUniqueElements(setA, setB);
+        System.out.println("getUniqueElements(): " + symDiff.toString());
+        System.out.println("  set A after: " + setA.toString());
+        System.out.println("  set B after: " + setB.toString());
+
+
+        setA = new HashSet<>();
+        setA.add("A");
+        setA.add("B");
+        setA.add("C");
+        setB = new HashSet<>();
+        setB.add("D");
+        setB.add("A");
+        setB.add("C");
+
+        System.out.println("set A: " + setA.toString());
+        System.out.println("set B: " + setB.toString());
+        inter = Task2.getIntersection(setA, setB);
+        System.out.println("getIntersection(): " + inter.toString());
+
+        System.out.println("set A: " + setA.toString());
+        System.out.println("set B: " + setB.toString());
+        symDiff = Task2.getUniqueElements(setA, setB);
+        System.out.println("getUniqueElements: " + symDiff.toString());
+        System.out.println("set A: " + setA.toString());
+        System.out.println("set B: " + setB.toString());
+    }
 }
