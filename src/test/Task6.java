@@ -1,6 +1,11 @@
 package test;
 
+import java.util.Arrays;
+
 public class Task6 {
+
+    static int[] denom = {50, 25, 10, 5, 1};
+
     public static int countWaysToProduceGivenAmountOfMoney(int cents) {
         /*
           Please implement this method to
@@ -17,6 +22,30 @@ public class Task6 {
           Assume that the cents parameter is always positive.
          */
 
-    	return 0;
+
+        int x = findCombinationsCount(cents, denom, 0);
+    	return x;
+
     }
+
+    static int findCombinationsCount(int amount, int denoms[], int indexCheck) {
+        if (amount == 0)
+            return 1;
+        else if (amount < 0 || denoms.length == indexCheck)
+            return 0;
+        else {
+            int comboFirstDenom = findCombinationsCount(amount-denoms[indexCheck], denoms, indexCheck);
+            int comboWithoutFirstDenom = findCombinationsCount(amount, denoms, indexCheck+1);
+            return comboFirstDenom + comboWithoutFirstDenom;
+        }
+    }
+
+    public static void main(String args[]) {
+        System.out.println(countWaysToProduceGivenAmountOfMoney(11));
+        System.out.println(countWaysToProduceGivenAmountOfMoney(0));
+        System.out.println(countWaysToProduceGivenAmountOfMoney(5));
+        System.out.println(countWaysToProduceGivenAmountOfMoney(15));
+    }
+
+
 }
