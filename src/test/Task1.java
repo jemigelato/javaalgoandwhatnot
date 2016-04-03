@@ -59,4 +59,42 @@ public class Task1 {
         }
     }
 
+    public static void main(String args[]) {
+        int[] denoms =  {25, 10, 5, 1};
+        findMinCoins(5, denoms);
+    }
+
+    static int findMinCoins (int Sum, int denoms [])
+    {
+        int[] lookup = new int[Sum+1];
+        lookup[0] = 0;
+        int[] biggestDenomAtSumK = new int[Sum+1];
+        biggestDenomAtSumK[0] = -1;
+
+        for (int i=0; i<denoms.length; i++)
+        {
+            for (int S=1; S<=Sum; S++)
+            {
+                if (S > denoms[i])
+                {
+                    int minCoinsWithNewCoin = lookup[S-denoms[i]] + 1;
+                    if (minCoinsWithNewCoin < lookup[S] || lookup[S]==0)
+                    {
+                        lookup[S] = minCoinsWithNewCoin;
+                        biggestDenomAtSumK[S] = denoms[i];
+                    }
+                }
+            }
+        }
+
+        int S=Sum;
+        while (S > 0)
+        {
+            System.out.println (biggestDenomAtSumK[S]);
+            S = S - biggestDenomAtSumK[S];
+        }
+
+        return lookup[Sum];
+    }
+
 }
