@@ -2,7 +2,7 @@ package test;
 
 public class Task1 {
 
-    static int[] denom = {1, 5, 10, 25, 100};
+    static final int[] DENOM = {1, 5, 10, 25, 100};
 
     public static Change getCorrectChange(int cents) {
         /*
@@ -30,11 +30,11 @@ public class Task1 {
             row[i] = -1;
         }
 
-        for( int d = 0; d < denom.length; d++ ) {
+        for(int d = 0; d < DENOM.length; d++ ) {
             for( int t = 1; t <= total; t++ ) {
-                if( t >= denom[d] ) {
-                    if ( minCount[t - denom[d]] + 1 < minCount[t] ) {
-                        minCount[t] = 1 + minCount[t - denom[d]];
+                if( t >= DENOM[d] ) {
+                    if ( minCount[t - DENOM[d]] + 1 < minCount[t] ) {
+                        minCount[t] = 1 + minCount[t - DENOM[d]];
                         row[t] = d;
                     }
                 }
@@ -56,7 +56,7 @@ public class Task1 {
         while ( start != 0 ) {
             int d = row[start];
 
-            switch (denom[d]) {
+            switch (DENOM[d]) {
                 case 100:
                     dollars++;
                     break;
@@ -73,7 +73,7 @@ public class Task1 {
                     ones++;
             }
 
-            start = start - denom[d];
+            start = start - DENOM[d];
         }
 
         Change change = new Change(dollars, quarters, dimes, nickels, ones);
@@ -101,7 +101,7 @@ public class Task1 {
         if (c == null) return;
         int total = c.getDollars()*100 + c.getQuarters()*25
                 + c.getDimes()*10 + c.getNickels()*5 + c.getCents();
-        System.out.println("Change for: " + total);
+        System.out.println("Change for: " + total + " cents");
         System.out.println("  Dollars: " + c.getDollars());
         System.out.println("  Quarters: " + c.getQuarters());
         System.out.println("  Dimes: " + c.getDimes());
