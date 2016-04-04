@@ -1,10 +1,8 @@
 package test;
 
-import java.util.Arrays;
-
 public class Task6 {
 
-    static int[] denom = {50, 25, 10, 5, 1};
+    static final int[] DENOM = {50, 25, 10, 5, 1};
 
     public static int countWaysToProduceGivenAmountOfMoney(int cents) {
         /*
@@ -23,29 +21,24 @@ public class Task6 {
          */
 
 
-        int x = findCombinationsCount(cents, denom, 0);
-    	return x;
+        int[] sol = new int[cents + 1];
 
-    }
+        // Base case, if input = 0
+        sol[0] = 1;
 
-    static int findCombinationsCount(int amount, int denoms[], int indexCheck) {
-        if (amount == 0)
-            return 1;
-        else if (amount < 0 || denoms.length == indexCheck)
-            return 0;
-        else {
-            int comboFirstDenom = findCombinationsCount(amount-denoms[indexCheck], denoms, indexCheck);
-            int comboWithoutFirstDenom = findCombinationsCount(amount, denoms, indexCheck+1);
-            return comboFirstDenom + comboWithoutFirstDenom;
+        for (int d = 0; d < DENOM.length; d++) {
+            for (int c = DENOM[d]; c <= cents; c++) {
+                sol[c] += sol[c - DENOM[d]];
+            }
         }
+
+    	return sol[cents];
     }
 
     public static void main(String args[]) {
-        System.out.println(countWaysToProduceGivenAmountOfMoney(11));
         System.out.println(countWaysToProduceGivenAmountOfMoney(0));
         System.out.println(countWaysToProduceGivenAmountOfMoney(5));
+        System.out.println(countWaysToProduceGivenAmountOfMoney(11));
         System.out.println(countWaysToProduceGivenAmountOfMoney(15));
     }
-
-
 }
