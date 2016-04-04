@@ -13,43 +13,44 @@ public class Task1 {
           Return null if the parameter is negative.
 
          */
-        int[] denom = {1, 5, 10, 25, 100};
+//        int[] denom = {1, 5, 10, 25, 100};
+        int[] denom = {1, 2, 3};
         int[] coins = minChange(denom, cents);
         System.out.println(cents + " cents:" + Arrays.toString(coins));
 
     	return null;
     }
 
-    public static int[] minChange(int[] denom, int changeAmount) {
+    public static int[] minChange(int[] denom, int totalAmt) {
         int n = denom.length;
-        int[] count = new int[changeAmount + 1];
-        int[] from = new int[changeAmount + 1];
+        int[] count = new int[totalAmt + 1];
+        int[] from = new int[totalAmt + 1];
 
         count[0] = 1;
-        for (int i = 0 ; i < changeAmount; i++)
-            if (count[i] > 0)
-                for (int j = 0; j < n; j++)
-                {
+        for (int i = 0 ; i < totalAmt; i++) {
+            if (count[i] > 0) {
+                for (int j = 0; j < n; j++) {
                     int p = i + denom[j];
-                    if (p <= changeAmount)
-                    {
-                        if (count[p] == 0 || count[p] > count[i] + 1)
-                        {
+                    if (p <= totalAmt) {
+                        if (count[p] == 0 || count[p] > count[i] + 1) {
                             count[p] = count[i] + 1;
                             from[p] = j;
                         }
                     }
                 }
+            }
+        }
+
+
 
         // No solutions:
-        if (count[changeAmount] == 0)
+        if (count[totalAmt] == 0)
             return null;
 
         // Build answer.
-        int[] result = new int[count[changeAmount] - 1];
-        int k = changeAmount;
-        while (k > 0)
-        {
+        int[] result = new int[count[totalAmt] - 1];
+        int k = totalAmt;
+        while (k > 0) {
             result[count[k] - 2] = denom[from[k]];
             k = k - denom[from[k]];
         }
@@ -58,8 +59,9 @@ public class Task1 {
     }
 
     public static void main(String args[]) {
-        getCorrectChange(11);
-        getCorrectChange(164);
+        getCorrectChange(5);
+//        getCorrectChange(11);
+//        getCorrectChange(164);
     }
 
 
