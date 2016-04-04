@@ -1,6 +1,9 @@
 package test;
 
 public class Task1 {
+
+    static int[] denom = {1, 5, 10, 25, 100};
+
     public static Change getCorrectChange(int cents) {
         /*
           Please implement this method to
@@ -11,53 +14,49 @@ public class Task1 {
           Return null if the parameter is negative.
 
          */
-//        int[] denom = {1, 5, 10, 25, 100};
-        int[] denom = {1, 2, 3};
-
 
         if (cents < 0) return null;
 
-//        int[] coins = minChange(denom, cents);
-//        System.out.println(cents + " cents: " + Arrays.toString(coins));
+        int total = cents;
+        int minCount[] = new int[total + 1];
+        int row[] = new int[total + 1];
 
-//        minCoins(cents, denom);
+        // base case
+        minCount[0] = 0; // 0 coins needed for 0 cents
 
-        System.out.println("Total amount: " + cents);
-        int totalAmt = cents;
-        int tCount[] = new int[totalAmt + 1];
-        int R[] = new int[totalAmt + 1];
-        tCount[0] = 0;
-        for(int i=1; i <= totalAmt; i++){
-            tCount[i] = Integer.MAX_VALUE-1;
-            R[i] = -1;
+        // initialize arrays
+        for( int i = 1; i <= total; i++ ){
+            minCount[i] = Integer.MAX_VALUE - 1;
+            row[i] = -1;
         }
-        for(int j=0; j < denom.length; j++){
-            for(int i=1; i <= totalAmt; i++){
-                if(i >= denom[j]){
-                    if (tCount[i - denom[j]] + 1 < tCount[i]) {
-                        tCount[i] = 1 + tCount[i - denom[j]];
-                        R[i] = j;
+
+        for( int d = 0; d < denom.length; d++ ) {
+            for( int t = 1; t <= total; t++ ) {
+                if( t >= denom[d] ) {
+                    if ( minCount[t - denom[d]] + 1 < minCount[t] ) {
+                        minCount[t] = 1 + minCount[t - denom[d]];
+                        row[t] = d;
                     }
                 }
             }
         }
-//        printCoinCombination(R, denom);
+
+        if ( row[row.length - 1] == -1 ) {
+            return null;
+        }
+
         int dollars = 0;
         int quarters = 0;
         int dimes = 0;
         int nickels = 0;
-        int cts = 0;
+        int ones = 0;
 
-        if (R[R.length - 1] == -1) {
-            return null;
-        }
+        int start = row.length - 1;
 
-        int start = R.length - 1;
         while ( start != 0 ) {
-            int j = R[start];
-            System.out.println(denom[j] + " ");
+            int d = row[start];
 
-            switch (denom[j]) {
+            switch (denom[d]) {
                 case 100:
                     dollars++;
                     break;
@@ -71,109 +70,38 @@ public class Task1 {
                     nickels++;
                     break;
                 case 1:
-                    cts++;
+                    ones++;
             }
 
-            start = start - denom[j];
+            start = start - denom[d];
         }
 
-
-        Change change = new Change(dollars, quarters, dimes, nickels, cts);
+        Change change = new Change(dollars, quarters, dimes, nickels, ones);
 
     	return change;
-
     }
 
-    public static int minCoins(int totalAmt, int denom[]){
-        int tCount[] = new int[totalAmt + 1];
-        int R[] = new int[totalAmt + 1];
-        tCount[0] = 0;
-        for(int i=1; i <= totalAmt; i++){
-            tCount[i] = Integer.MAX_VALUE-1;
-            R[i] = -1;
-        }
-        for(int j=0; j < denom.length; j++){
-            for(int i=1; i <= totalAmt; i++){
-                if(i >= denom[j]){
-                    if (tCount[i - denom[j]] + 1 < tCount[i]) {
-                        tCount[i] = 1 + tCount[i - denom[j]];
-                        R[i] = j;
-                    }
-                }
-            }
-        }
-        printCoinCombination(R, denom);
-        return tCount[totalAmt];
-    }
-
-    public static int[] minChange(int[] denom, int totalAmt) {
-        int n = denom.length;
-        int[] tCount = new int[totalAmt + 1];
-        int[] from = new int[totalAmt + 1];
-
-        tCount[0] = 1;
-        for (int i = 0 ; i < totalAmt; i++) {
-            if (tCount[i] > 0) {
-                for (int j = 0; j < n; j++) {
-                    int p = i + denom[j];
-                    if (p <= totalAmt) {
-                        if (tCount[p] == 0 || tCount[p] > tCount[i] + 1) {
-                            tCount[p] = tCount[i] + 1;
-                            from[p] = j;
-                        }
-                    }
-                }
-            }
-        }
-
-        // No solution
-        if (tCount[totalAmt] == 0)
-            return null;
-
-        // Construct result
-        int[] result = new int[tCount[totalAmt] - 1];
-        int k = totalAmt;
-        while (k > 0) {
-            result[tCount[k] - 2] = denom[from[k]];
-            k = k - denom[from[k]];
-        }
-
-        return result;
-    }
-
-    private static void printCoinCombination(int R[], int coins[]) {
-        if (R[R.length - 1] == -1) {
-            System.out.print("No solution is possible");
-            return;
-        }
-        int start = R.length - 1;
-        System.out.print("Coins used to form total ");
-        while ( start != 0 ) {
-            int j = R[start];
-            System.out.print(coins[j] + " ");
-            start = start - coins[j];
-        }
-        System.out.print("\n");
-    }
 
     public static void main(String args[]) {
         Change c = new Change(0,0,0,0,0);
-//        c = getCorrectChange(0);
-//        c = getCorrectChange(1);
-//        printChange(c);
-        c = getCorrectChange(5);
+        c = getCorrectChange(0);
+        c = getCorrectChange(1);
         printChange(c);
-//        c = getCorrectChange(11);
-//        printChange(c);
-//        c = getCorrectChange(164);
-//        printChange(c);
-//        c = getCorrectChange(120);
-//        printChange(c);
-//        c = getCorrectChange(Integer.MAX_VALUE);
-//        printChange(c);
+        c = getCorrectChange(6);
+        printChange(c);
+        c = getCorrectChange(11);
+        printChange(c);
+        c = getCorrectChange(164);
+        printChange(c);
+        c = getCorrectChange(120);
+        printChange(c);
     }
 
     static void printChange(Change c) {
+        if (c == null) return;
+        int total = c.getDollars()*100 + c.getQuarters()*25
+                + c.getDimes()*10 + c.getNickels()*5 + c.getCents();
+        System.out.println("Change for: " + total);
         System.out.println("  Dollars: " + c.getDollars());
         System.out.println("  Quarters: " + c.getQuarters());
         System.out.println("  Dimes: " + c.getDimes());
@@ -223,44 +151,6 @@ public class Task1 {
         public int getCents() {
             return _cents;
         }
-    }
-
-    public static void main(String args[]) {
-        int[] denoms =  {25, 10, 5, 1};
-        findMinCoins(5, denoms);
-    }
-
-    static int findMinCoins (int Sum, int denoms [])
-    {
-        int[] lookup = new int[Sum+1];
-        lookup[0] = 0;
-        int[] biggestDenomAtSumK = new int[Sum+1];
-        biggestDenomAtSumK[0] = -1;
-
-        for (int i=0; i<denoms.length; i++)
-        {
-            for (int S=1; S<=Sum; S++)
-            {
-                if (S > denoms[i])
-                {
-                    int minCoinsWithNewCoin = lookup[S-denoms[i]] + 1;
-                    if (minCoinsWithNewCoin < lookup[S] || lookup[S]==0)
-                    {
-                        lookup[S] = minCoinsWithNewCoin;
-                        biggestDenomAtSumK[S] = denoms[i];
-                    }
-                }
-            }
-        }
-
-        int S=Sum;
-        while (S > 0)
-        {
-            System.out.println (biggestDenomAtSumK[S]);
-            S = S - biggestDenomAtSumK[S];
-        }
-
-        return lookup[Sum];
     }
 
 }
