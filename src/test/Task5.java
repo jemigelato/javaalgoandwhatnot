@@ -23,18 +23,17 @@ public class Task5 {
         int maxSum = Integer.MIN_VALUE;
         int max = maxSum(root, 0, maxSum);
         return max;
-
     }
 
     static int maxSum(Node root, int sum, int maxSum) {
 
-        if (root != null) {
+        if ( root != null ) {
             sum = sum + root.getValue();
-            if (sum > maxSum && (root.getChildren() == null || root.getChildren().isEmpty())) {
+            if ( sum > maxSum && (root.getChildren() == null || root.getChildren().isEmpty()) ) {
                 maxSum = sum;
             }
-//            System.out.println("sum: " + sum);
-            for (int i = 0; i < root.getChildren().size(); i ++) {
+
+            for ( int i = 0; i < root.getChildren().size(); i ++ ) {
                 maxSum = maxSum(root.getChildren().get(i), sum, maxSum);
             }
         }
