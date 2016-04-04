@@ -87,8 +87,9 @@ public class Coins1_dp
 
     public static void main(String[] args)
     {
-       int[] v = {1, 5, 10, 25, 50, 100};
+//       int[] v = {1, 5, 10, 25, 50, 100};
 //        int[] v = {1, 3, 9, 19, 26 };
+        int[] v = {1, 2, 3};
 
         int Am, r;
 
