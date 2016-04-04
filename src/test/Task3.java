@@ -13,12 +13,13 @@ public class Task3 {
           Please implement this method to
           reverse a given linked list.
          */
-        if (node == null) return null;
+        if ( node == null ) return null;
 
         ListNode prev = null;
         ListNode curr = node;
         ListNode next = null;
-        while (curr != null) {
+
+        while ( curr != null ) {
             next = curr.getNext();
             curr.setNext(prev);
             prev = curr;
@@ -70,13 +71,13 @@ public class Task3 {
 
     static void printList(ListNode head) {
         System.out.println("\nPrinting list... ");
-        if (head == null) {
+        if ( head == null ) {
             System.out.println("NULL");
             return;
         }
 
         ListNode n = head;
-        while (n != null) {
+        while ( n != null ) {
             System.out.print(" " + n.getItem());
             n = n.getNext();
         }
