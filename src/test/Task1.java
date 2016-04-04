@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Arrays;
+
 public class Task1 {
     public static Change getCorrectChange(int cents) {
         /*
@@ -11,8 +13,53 @@ public class Task1 {
           Return null if the parameter is negative.
 
          */
+        int[] denom = {1, 5, 10, 25, 100};
+        int[] coins = minChange(denom, cents);
+        System.out.println(cents + " cents:" + Arrays.toString(coins));
 
     	return null;
+    }
+
+    public static int[] minChange(int[] denom, int changeAmount) {
+        int n = denom.length;
+        int[] count = new int[changeAmount + 1];
+        int[] from = new int[changeAmount + 1];
+
+        count[0] = 1;
+        for (int i = 0 ; i < changeAmount; i++)
+            if (count[i] > 0)
+                for (int j = 0; j < n; j++)
+                {
+                    int p = i + denom[j];
+                    if (p <= changeAmount)
+                    {
+                        if (count[p] == 0 || count[p] > count[i] + 1)
+                        {
+                            count[p] = count[i] + 1;
+                            from[p] = j;
+                        }
+                    }
+                }
+
+        // No solutions:
+        if (count[changeAmount] == 0)
+            return null;
+
+        // Build answer.
+        int[] result = new int[count[changeAmount] - 1];
+        int k = changeAmount;
+        while (k > 0)
+        {
+            result[count[k] - 2] = denom[from[k]];
+            k = k - denom[from[k]];
+        }
+
+        return result;
+    }
+
+    public static void main(String args[]) {
+        getCorrectChange(11);
+        getCorrectChange(164);
     }
 
 
