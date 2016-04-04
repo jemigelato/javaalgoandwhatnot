@@ -11,8 +11,8 @@ public class Task1 {
           Return null if the parameter is negative.
 
          */
-        int[] denom = {1, 5, 10, 25, 100};
-//        int[] denom = {1, 2, 3};
+//        int[] denom = {1, 5, 10, 25, 100};
+        int[] denom = {1, 2, 3};
 
 
         if (cents < 0) return null;
@@ -20,40 +20,10 @@ public class Task1 {
 //        int[] coins = minChange(denom, cents);
 //        System.out.println(cents + " cents: " + Arrays.toString(coins));
 
-        minCoins(cents, denom);
+//        minCoins(cents, denom);
 
-        int dollars = 0;
-        int quarters = 0;
-        int dimes = 0;
-        int nickels = 0;
-        int cts = 0;
-
-//        for (int value : coins) {
-//            switch (value) {
-//                case 100:
-//                    dollars++;
-//                    break;
-//                case 25:
-//                    quarters++;
-//                    break;
-//                case 10:
-//                    dimes++;
-//                    break;
-//                case 5:
-//                    nickels++;
-//                    break;
-//                case 1:
-//                    cts++;
-//            }
-//        }
-
-        Change change = new Change(dollars, quarters, dimes, nickels, cts);
-
-    	return change;
-
-    }
-
-    public static int minCoins(int totalAmt, int coins[]){
+        System.out.println("Total amount: " + cents);
+        int totalAmt = cents;
         int tCount[] = new int[totalAmt + 1];
         int R[] = new int[totalAmt + 1];
         tCount[0] = 0;
@@ -61,17 +31,78 @@ public class Task1 {
             tCount[i] = Integer.MAX_VALUE-1;
             R[i] = -1;
         }
-        for(int j=0; j < coins.length; j++){
+        for(int j=0; j < denom.length; j++){
             for(int i=1; i <= totalAmt; i++){
-                if(i >= coins[j]){
-                    if (tCount[i - coins[j]] + 1 < tCount[i]) {
-                        tCount[i] = 1 + tCount[i - coins[j]];
+                if(i >= denom[j]){
+                    if (tCount[i - denom[j]] + 1 < tCount[i]) {
+                        tCount[i] = 1 + tCount[i - denom[j]];
                         R[i] = j;
                     }
                 }
             }
         }
-        printCoinCombination(R, coins);
+//        printCoinCombination(R, denom);
+        int dollars = 0;
+        int quarters = 0;
+        int dimes = 0;
+        int nickels = 0;
+        int cts = 0;
+
+        if (R[R.length - 1] == -1) {
+            return null;
+        }
+
+        int start = R.length - 1;
+        while ( start != 0 ) {
+            int j = R[start];
+            System.out.println(denom[j] + " ");
+
+            switch (denom[j]) {
+                case 100:
+                    dollars++;
+                    break;
+                case 25:
+                    quarters++;
+                    break;
+                case 10:
+                    dimes++;
+                    break;
+                case 5:
+                    nickels++;
+                    break;
+                case 1:
+                    cts++;
+            }
+
+            start = start - denom[j];
+        }
+
+
+        Change change = new Change(dollars, quarters, dimes, nickels, cts);
+
+    	return change;
+
+    }
+
+    public static int minCoins(int totalAmt, int denom[]){
+        int tCount[] = new int[totalAmt + 1];
+        int R[] = new int[totalAmt + 1];
+        tCount[0] = 0;
+        for(int i=1; i <= totalAmt; i++){
+            tCount[i] = Integer.MAX_VALUE-1;
+            R[i] = -1;
+        }
+        for(int j=0; j < denom.length; j++){
+            for(int i=1; i <= totalAmt; i++){
+                if(i >= denom[j]){
+                    if (tCount[i - denom[j]] + 1 < tCount[i]) {
+                        tCount[i] = 1 + tCount[i - denom[j]];
+                        R[i] = j;
+                    }
+                }
+            }
+        }
+        printCoinCombination(R, denom);
         return tCount[totalAmt];
     }
 
@@ -126,13 +157,20 @@ public class Task1 {
     }
 
     public static void main(String args[]) {
-        Change c = getCorrectChange(0);
-        c = getCorrectChange(1);
-        c = getCorrectChange(5);
-        c = getCorrectChange(11);
+        Change c = new Change(0,0,0,0,0);
+//        c = getCorrectChange(0);
+//        c = getCorrectChange(1);
 //        printChange(c);
-        c = getCorrectChange(164);
-        c = getCorrectChange(1000);
+        c = getCorrectChange(5);
+        printChange(c);
+//        c = getCorrectChange(11);
+//        printChange(c);
+//        c = getCorrectChange(164);
+//        printChange(c);
+//        c = getCorrectChange(120);
+//        printChange(c);
+//        c = getCorrectChange(Integer.MAX_VALUE);
+//        printChange(c);
     }
 
     static void printChange(Change c) {
