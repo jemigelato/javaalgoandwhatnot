@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Task4 {
     // Please do not change this interface
-    public static interface Node {
+    public interface Node {
         int getValue();
         List<Node> getChildren();
     }
@@ -21,12 +21,14 @@ public class Task4 {
          */
 
         List<Node> list = new ArrayList<>();
-        if ( root == null ) return list;
+        if (root == null) {
+            return list;
+        }
 
         ArrayDeque<Node>  stack = new ArrayDeque<>();
         Node node = root;
 
-        while ( true ) {
+        while (true) {
             stack.push(node);
             if ( node.getChildren() != null && node.getChildren().get(0) != null ) {
                 node = node.getChildren().get(0);
@@ -35,17 +37,18 @@ public class Task4 {
             }
         }
 
-        while ( stack.size() > 0 ) {
+        while (stack.size() > 0) {
             node = stack.pop();
             list.add(node);
-            if ( node.getChildren() != null ) {
+            if (node.getChildren() != null) {
                 int count = node.getChildren().size();
-                for ( int i = count - 1; i > 0; i-- ) {
-                    if ( node.getChildren() != null && node.getChildren().get(i) != null ) {
+                for (int i = count - 1; i > 0; i--) {
+                    if (node.getChildren() != null && node.getChildren().get(i) != null) {
                         Node nodex = node.getChildren().get(i);
-                        while ( true ) {
+                        while (true) {
                             stack.push(nodex);
-                            if ( nodex.getChildren() != null && nodex.getChildren().get(0) != null ) {
+                            if ((nodex.getChildren() != null)
+                                    && (nodex.getChildren().get(0) != null)) {
                                 nodex = nodex.getChildren().get(0);
                             } else {
                                 break;
@@ -127,7 +130,7 @@ public class Task4 {
 
         List<Node> traverseLst = traverseTreeInDepth(node1);
         System.out.println("Printing list...");
-        for ( Node nd : traverseLst ) {
+        for (Node nd : traverseLst) {
             System.out.print(nd.getValue() + ", ");
         }
     }

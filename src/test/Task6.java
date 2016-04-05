@@ -2,7 +2,7 @@ package test;
 
 public class Task6 {
 
-    static final int[] DENOM = {50, 25, 10, 5, 1};
+    private static final int[] DEN = {50, 25, 10, 5, 1};
 
     public static int countWaysToProduceGivenAmountOfMoney(int cents) {
         /*
@@ -26,9 +26,9 @@ public class Task6 {
         // Base case, if input = 0
         sol[0] = 1;
 
-        for (int d = 0; d < DENOM.length; d++) {
-            for (int c = DENOM[d]; c <= cents; c++) {
-                sol[c] += sol[c - DENOM[d]];
+        for (int den : DEN) {
+            for (int c = den; c <= cents; c++) {
+                sol[c] += sol[c - den];
             }
         }
 

@@ -2,7 +2,7 @@ package test;
 
 public class Task1 {
 
-    static final int[] DENOM = {1, 5, 10, 25, 100};
+    private static final int[] DEN = {1, 5, 10, 25, 100};
 
     public static Change getCorrectChange(int cents) {
         /*
@@ -19,25 +19,24 @@ public class Task1 {
             return null;
         }
 
-        int total = cents;
-        int minCount[] = new int[total + 1];
-        int row[] = new int[total + 1];
+        int minCount[] = new int[cents + 1];
+        int row[] = new int[cents + 1];
 
         // base case
         minCount[0] = 0; // 0 coins needed for 0 cents
 
         // initialize arrays
-        for (int i = 1; i <= total; i++){
+        for (int i = 1; i <= cents; i++){
             minCount[i] = Integer.MAX_VALUE - 1;
             row[i] = -1;
         }
 
-        for (int d = 0; d < DENOM.length; d++ ) {
-            for (int t = 1; t <= total; t++) {
-                if (t >= DENOM[d]) {
-                    if ( minCount[t - DENOM[d]] + 1 < minCount[t] ) {
-                        minCount[t] = 1 + minCount[t - DENOM[d]];
-                        row[t] = d;
+        for (int d = 0; d < DEN.length; d++ ) {
+            for (int c = 1; c <= cents; c++) {
+                if (c >= DEN[d]) {
+                    if ( minCount[c - DEN[d]] + 1 < minCount[c] ) {
+                        minCount[c] = 1 + minCount[c - DEN[d]];
+                        row[c] = d;
                     }
                 }
             }
@@ -58,7 +57,7 @@ public class Task1 {
         while (start != 0) {
             int d = row[start];
 
-            switch (DENOM[d]) {
+            switch (DEN[d]) {
                 case 100:
                     dollars++;
                     break;
@@ -77,12 +76,10 @@ public class Task1 {
                 default: break;
             }
 
-            start = start - DENOM[d];
+            start = start - DEN[d];
         }
 
-        Change change = new Change(dollars, quarters, dimes, nickels, ones);
-
-    	return change;
+    	return new Change(dollars, quarters, dimes, nickels, ones);
     }
 
 
@@ -130,7 +127,7 @@ public class Task1 {
     }
 
     public static void main(String args[]) {
-        Change c = new Change(0,0,0,0,0);
+        Change c;
         c = getCorrectChange(0);
         c = getCorrectChange(1);
         printChange(c);
@@ -141,6 +138,8 @@ public class Task1 {
         c = getCorrectChange(164);
         printChange(c);
         c = getCorrectChange(120);
+        printChange(c);
+        c = getCorrectChange(141);
         printChange(c);
     }
 

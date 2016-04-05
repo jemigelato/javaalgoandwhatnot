@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Task5 {
     // Please do not change this interface
-    public static interface Node {
+    public interface Node {
         int getValue();
         List<Node> getChildren();
     }
@@ -21,19 +21,19 @@ public class Task5 {
           return the largest root-to-leaf sum in the tree.
          */
         int maxSum = Integer.MIN_VALUE;
-        int max = maxSum(root, 0, maxSum);
-        return max;
+        return maxSum(root, 0, maxSum);
     }
 
     static int maxSum(Node root, int sum, int maxSum) {
 
-        if ( root != null ) {
+        if (root != null) {
             sum = sum + root.getValue();
-            if ( sum > maxSum && (root.getChildren() == null || root.getChildren().isEmpty()) ) {
+            if ((sum > maxSum)
+                    && ((root.getChildren() == null) || (root.getChildren().isEmpty()))) {
                 maxSum = sum;
             }
 
-            for ( int i = 0; i < root.getChildren().size(); i ++ ) {
+            for (int i = 0; i < root.getChildren().size(); i ++) {
                 maxSum = maxSum(root.getChildren().get(i), sum, maxSum);
             }
         }
