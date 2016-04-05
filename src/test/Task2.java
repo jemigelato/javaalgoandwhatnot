@@ -12,9 +12,9 @@ public class Task2 {
           The method should not chage the content of the parameters.
          */
 
-        if ( a == null && b == null ) return null;
-        if ( a == null && b != null ) return b;
-        if ( a != null && b == null ) return a;
+        if (a == null && b == null) return null;
+        if (a == null && b != null) return b;
+        if (a != null && b == null) return a;
         Set<Object> inter = new HashSet<>(a);
         inter.retainAll(b);
 
@@ -29,9 +29,9 @@ public class Task2 {
           The method should not change the content of the parameters.
          */
 
-        if ( a == null && b == null ) return null;
-        if ( a == null && b != null ) return b;
-        if ( a != null && b == null ) return a;
+        if (a == null && b == null) return null;
+        if (a == null && b != null) return b;
+        if (a != null && b == null) return a;
 
         Set<Object> tmpUnion = new HashSet<>(a) ;
         tmpUnion.addAll(b);
